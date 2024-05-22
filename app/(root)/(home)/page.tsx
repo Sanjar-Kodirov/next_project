@@ -3,7 +3,7 @@ import React from "react";
 
 const Home = () => {
   return (
-    <main className="h-screen flex-center">
+    <main>
       <SignedOut>
         <SignInButton />
       </SignedOut>
