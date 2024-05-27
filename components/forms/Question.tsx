@@ -21,6 +21,7 @@ import { Badge } from "../ui/badge";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { questionsSchema } from "@/lib/validations/question";
+import { createQuestion } from "@/lib/actions/question.action";
 
 export default function Question() {
   const router = useRouter();
@@ -71,6 +72,7 @@ export default function Question() {
 
   async function onSubmit(data: z.infer<typeof questionsSchema>) {
     console.log("submitting");
+    createQuestion({ name: "titel" });
     setIsSubmitting(true);
     // try {
     //   const res = await createQuestion(data);
