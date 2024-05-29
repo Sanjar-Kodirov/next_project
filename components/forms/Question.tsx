@@ -1,10 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Editor } from "@tinymce/tinymce-react";
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import React, { useRef, useState } from "react";
-import { Editor } from "@tinymce/tinymce-react";
 
 import {
   Form,
@@ -15,14 +15,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { createQuestion } from "@/lib/actions/question.action";
+import { questionsSchema } from "@/lib/validations/question";
+import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
+import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { Badge } from "../ui/badge";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { questionsSchema } from "@/lib/validations/question";
-import { createQuestion } from "@/lib/actions/question.action";
-import { title } from "process";
 
 type TProps = {
   mongoUserId: string;
@@ -31,6 +30,7 @@ type TProps = {
 export default function Question(props: TProps) {
   const { mongoUserId } = props;
   const router = useRouter();
+  const pathname = usePathname();
   const editorRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -84,6 +84,7 @@ export default function Question(props: TProps) {
       content: data.explanation,
       tags: data.tags,
       author: JSON.parse(mongoUserId),
+      path: pathname,
     };
     try {
       setIsSubmitting(true);
