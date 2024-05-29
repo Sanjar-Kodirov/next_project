@@ -22,8 +22,14 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { questionsSchema } from "@/lib/validations/question";
 import { createQuestion } from "@/lib/actions/question.action";
+import { title } from "process";
 
-export default function Question() {
+type TProps = {
+  mongoUserId: string;
+};
+
+export default function Question(props: TProps) {
+  const { mongoUserId } = props;
   const router = useRouter();
   const editorRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -71,19 +77,27 @@ export default function Question() {
   });
 
   async function onSubmit(data: z.infer<typeof questionsSchema>) {
-    console.log("submitting");
-    createQuestion({ name: "titel" });
-    setIsSubmitting(true);
-    // try {
-    //   const res = await createQuestion(data);
-    //   if (!res.error) {
-    //     router.push("/");
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // } finally {
-    //   setIsSubmitting(false);
-    // }
+    console.log("data form", data);
+
+    const backData = {
+      title: data.title,
+      content: data.explanation,
+      tags: data.tags,
+      author: JSON.parse(mongoUserId),
+    };
+    try {
+      setIsSubmitting(true);
+      const res = await createQuestion(backData);
+
+      // @ts-ignore
+      if (!res.error) {
+        router.push("/");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
   return (
     <Form {...form}>
