@@ -4,13 +4,11 @@ import { auth } from "@clerk/nextjs/server";
 import React from "react";
 
 const page = async () => {
-  // const { userId } = auth();
-
-  const userId = "clerk123456";
+  const { userId } = auth();
 
   const mongoUser = await getUserById({ userId });
 
-  // console.log("mongoUser", mongoUser);
+  console.log("mongoUser", mongoUser);
 
   return (
     <div>
