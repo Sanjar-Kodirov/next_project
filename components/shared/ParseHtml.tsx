@@ -2,8 +2,8 @@
 
 import React, { useEffect } from "react";
 
-// import Prism from "prismjs";
-// import parse from "html-react-parser";
+import Prism from "prismjs";
+import parse from "html-react-parser";
 
 import "prismjs/components/prism-python";
 import "prismjs/components/prism-java";
@@ -34,11 +34,10 @@ interface Props {
 
 const ParseHTML = ({ data }: Props) => {
   useEffect(() => {
-    // Prism.highlightAll();
+    Prism.highlightAll();
   }, []);
 
-  //   return <div className={"markdown w-full min-w-full"}>{parse(data)}</div>;
-  return <div className={"markdown w-full min-w-full"}>Html parser</div>;
+  return <div className={"markdown w-full min-w-full"}>{parse(data)}</div>;
 };
 
 export default ParseHTML;
