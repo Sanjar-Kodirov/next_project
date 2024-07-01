@@ -18,6 +18,7 @@ import Image from "next/image";
 // import { createAnswer } from "@/lib/actions/answer.action";
 import { usePathname } from "next/navigation";
 import { AnswerSchema } from "@/lib/validations";
+import { createAnswer } from "@/lib/actions/answer.action";
 
 interface Props {
   question: string;
@@ -42,12 +43,12 @@ const Answer = ({ question, questionId, authorId }: Props) => {
     setIsSubmitting(true);
 
     try {
-    //   await createAnswer({
-    //     content: values.answer,
-    //     author: JSON.parse(authorId),
-    //     question: JSON.parse(questionId),
-    //     path: pathname,
-    //   });
+      await createAnswer({
+        content: values.answer,
+        author: JSON.parse(authorId),
+        question: JSON.parse(questionId),
+        path: pathname,
+      });
 
       form.reset();
 

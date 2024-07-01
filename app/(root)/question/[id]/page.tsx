@@ -1,4 +1,4 @@
-import Answear from "@/components/forms/Answear";
+import Answear from "@/components/forms/Answer";
 import Metric from "@/components/shared/Metric";
 import ParseHTML from "@/components/shared/ParseHtml";
 import RenderTag from "@/components/shared/RenderTag";
