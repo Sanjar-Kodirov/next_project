@@ -1,3 +1,4 @@
+import Answear from "@/components/forms/Answear";
 import Metric from "@/components/shared/Metric";
 import ParseHTML from "@/components/shared/ParseHtml";
 import RenderTag from "@/components/shared/RenderTag";
@@ -100,13 +101,13 @@ const Page = async ({ params, searchParams }: any) => {
         totalAnswers={result.answers.length}
         page={searchParams?.page}
         filter={searchParams?.filter}
-      />
+      /> */}
 
-      <Answer
+      <Answear
         question={result.content}
         questionId={JSON.stringify(result._id)}
         authorId={JSON.stringify(mongoUser._id)}
-      /> */}
+      />
     </>
   );
 };
