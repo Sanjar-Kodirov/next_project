@@ -5,6 +5,7 @@ import {
   downvoteQuestion,
   upvoteQuestion,
 } from "@/lib/actions/question.action";
+import { toggleSaveQuestion } from "@/lib/actions/user.action";
 // import {
 //   downvoteQuestion,
 //   upvoteQuestion,
@@ -43,11 +44,11 @@ const Votes = ({
   console.log("pathname", pathname);
 
   const handleSave = async () => {
-    // await toggleSaveQuestion({
-    //   userId: JSON.parse(userId),
-    //   questionId: JSON.parse(itemId),
-    //   path: pathname,
-    // });
+    await toggleSaveQuestion({
+      userId: JSON.parse(userId),
+      questionId: JSON.parse(itemId),
+      path: pathname,
+    });
     // return toast({
     //   title: `Question ${
     //     !hasSaved ? "Saved in" : "Removed from"
