@@ -1,6 +1,10 @@
 "use client";
 
 import { downvoteAnswer, upvoteAnswer } from "@/lib/actions/answer.action";
+import {
+  downvoteQuestion,
+  upvoteQuestion,
+} from "@/lib/actions/question.action";
 // import {
 //   downvoteQuestion,
 //   upvoteQuestion,
@@ -36,6 +40,8 @@ const Votes = ({
   const pathname = usePathname();
   const router = useRouter();
 
+  console.log("pathname", pathname);
+
   const handleSave = async () => {
     // await toggleSaveQuestion({
     //   userId: JSON.parse(userId),
@@ -60,13 +66,13 @@ const Votes = ({
 
     if (action === "upvote") {
       if (type === "Question") {
-        // await upvoteQuestion({
-        //   questionId: JSON.parse(itemId),
-        //   userId: JSON.parse(userId),
-        //   hasupVoted,
-        //   hasdownVoted,
-        //   path: pathname,
-        // });
+        await upvoteQuestion({
+          questionId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path: pathname,
+        });
       } else if (type === "Answer") {
         await upvoteAnswer({
           answerId: JSON.parse(itemId),
@@ -85,13 +91,13 @@ const Votes = ({
 
     if (action === "downvote") {
       if (type === "Question") {
-        // await downvoteQuestion({
-        //   questionId: JSON.parse(itemId),
-        //   userId: JSON.parse(userId),
-        //   hasupVoted,
-        //   hasdownVoted,
-        //   path: pathname,
-        // });
+        await downvoteQuestion({
+          questionId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path: pathname,
+        });
       } else if (type === "Answer") {
         await downvoteAnswer({
           answerId: JSON.parse(itemId),
