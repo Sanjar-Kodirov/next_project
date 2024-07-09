@@ -41,8 +41,6 @@ const Votes = ({
   const pathname = usePathname();
   const router = useRouter();
 
-  console.log("pathname", pathname);
-
   const handleSave = async () => {
     await toggleSaveQuestion({
       userId: JSON.parse(userId),
