@@ -1,3 +1,5 @@
+import { BADGE_CRITERIA } from "@/constants";
+import { BadgeCounts } from "@/types";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -51,4 +53,44 @@ export const formatAndDivideNumber = (num: number): string => {
   } else {
     return num.toString();
   }
+};
+
+export const getJoinedDate = (date: Date): string => {
+  // Extract the month and year from the Date object
+  const month = date.toLocaleString("default", { month: "long" });
+  const year = date.getFullYear();
+
+  // Create the joined date string (e.g., "September 2023")
+  const joinedDate = `${month} ${year}`;
+
+  return joinedDate;
+};
+
+interface UrlQueryParams {
+  params: string;
+  key: string;
+  value: string | null;
+}
+
+export const assignBadges = (params: BadgeParam) => {
+  const badgeCounts: BadgeCounts = {
+    GOLD: 0,
+    SILVER: 0,
+    BRONZE: 0,
+  };
+
+  const { criteria } = params;
+
+  criteria.forEach((item) => {
+    const { type, count } = item;
+    const badgeLevels: any = BADGE_CRITERIA[type];
+
+    Object.keys(badgeLevels).forEach((level: any) => {
+      if (count >= badgeLevels[level]) {
+        badgeCounts[level as keyof BadgeCounts] += 1;
+      }
+    });
+  });
+
+  return badgeCounts;
 };
