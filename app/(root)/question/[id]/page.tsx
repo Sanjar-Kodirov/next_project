@@ -1,4 +1,4 @@
-import Answear from "@/components/forms/Answer";
+import Answer from "@/components/forms/Answer";
 import AllAnswers from "@/components/shared/AllAnswers";
 import Metric from "@/components/shared/Metric";
 import ParseHTML from "@/components/shared/ParseHtml";
@@ -8,13 +8,13 @@ import { getQuestionById } from "@/lib/actions/question.action";
 import { getUserById } from "@/lib/actions/user.action";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
 import { auth } from "@clerk/nextjs/server";
-
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const Page = async ({ params, searchParams }: any) => {
   const { userId: clerkId } = auth();
+
   let mongoUser;
 
   if (clerkId) {
@@ -46,11 +46,11 @@ const Page = async ({ params, searchParams }: any) => {
             <Votes
               type="Question"
               itemId={JSON.stringify(result._id)}
-              userId={JSON.stringify(mongoUser?._id)}
+              userId={JSON.stringify(mongoUser._id)}
               upvotes={result.upvotes.length}
-              hasupVoted={result.upvotes.includes(mongoUser?._id)}
+              hasupVoted={result.upvotes.includes(mongoUser._id)}
               downvotes={result.downvotes.length}
-              hasdownVoted={result.downvotes.includes(mongoUser?._id)}
+              hasdownVoted={result.downvotes.includes(mongoUser._id)}
               hasSaved={mongoUser?.saved.includes(result._id)}
             />
           </div>
@@ -64,8 +64,8 @@ const Page = async ({ params, searchParams }: any) => {
         <Metric
           imgUrl="/assets/icons/clock.svg"
           alt="clock icon"
-          value={`asked ${getTimestamp(result.createdAt)}`}
-          title="Asked"
+          value={` asked ${getTimestamp(result.createdAt)}`}
+          title=" Asked"
           textStyles="small-medium text-dark400_light800"
         />
         <Metric
@@ -99,16 +99,16 @@ const Page = async ({ params, searchParams }: any) => {
 
       <AllAnswers
         questionId={result._id}
-        userId={mongoUser?._id}
+        userId={mongoUser._id}
         totalAnswers={result.answers.length}
         page={searchParams?.page}
         filter={searchParams?.filter}
       />
 
-      <Answear
+      <Answer
         question={result.content}
         questionId={JSON.stringify(result._id)}
-        authorId={JSON.stringify(mongoUser?._id)}
+        authorId={JSON.stringify(mongoUser._id)}
       />
     </>
   );
