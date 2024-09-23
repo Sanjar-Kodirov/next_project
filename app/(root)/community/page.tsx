@@ -6,6 +6,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Filter from "@/components/shared/FIlter";
 import UserCard from "@/components/cards/UserCard";
+import Pagination from "@/components/shared/Pagination";
 
 export const metadata: Metadata = {
   title: "Community | Dev Overflow",
@@ -50,12 +51,12 @@ const Page = async ({ searchParams }: SearchParamsProps) => {
         )}
       </section>
 
-      {/* <div className="mt-10">
+      <div className="mt-10">
         <Pagination
           pageNumber={searchParams?.page ? +searchParams.page : 1}
           isNext={result.isNext}
         />
-      </div> */}
+      </div>
     </>
   );
 };

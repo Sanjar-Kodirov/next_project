@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/select";
 import { formUrlQueryParams } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
-import queryString from "query-string";
 
 interface Props {
   filters: {
