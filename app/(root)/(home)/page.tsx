@@ -53,8 +53,6 @@ export default async function Home({ searchParams }: SearchParamsProps) {
     filter: searchParams.filter,
   });
 
-  console.log("searchParams", searchParams);
-
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
