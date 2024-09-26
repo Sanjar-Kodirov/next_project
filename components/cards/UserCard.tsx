@@ -56,7 +56,7 @@ const UserCard = ({ user }: Props) => {
                 ))}
               </div>
             ) : (
-              <Badge>No tags yet</Badge>
+              <Badge className="text-dark300_light900">No tags yet</Badge>
             )}
           </Suspense>
         </div>
